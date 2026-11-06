@@ -1,14 +1,128 @@
-
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Android App</title>
+
+    <title>Open My App</title>
+
+    <meta name="theme-color" content="#0d1117">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0d1117, #172554);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            padding: 35px 25px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 22px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .app-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 16px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .app-btn:active {
+            transform: scale(0.97);
+        }
+
+        .website-btn {
+            display: inline-block;
+            margin-top: 18px;
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        #status {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #fbbf24;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Welcome to My Android App</h1>
-    <p>यह वेबसाइट Android App के Digital Asset Links के लिए है।</p>
+
+    <div class="container">
+
+        <div class="logo">📱</div>
+
+        <h1>Welcome to My App</h1>
+
+        <p>
+            Open our Android application
+            by clicking the button below.
+        </p>
+
+        <button class="app-btn" onclick="openMyApp()">
+            🚀 Open My App
+        </button>
+
+        <div id="status"></div>
+
+        <a class="website-btn"
+           href="https://saurabh936904-beep.github.io/">
+            Continue to Website
+        </a>
+
+    </div>
+
+    <script>
+        function openMyApp() {
+            document.getElementById("status").innerText =
+                "Opening app...";
+
+            // Verified Android App Link
+            window.location.href =
+                "https://saurabh936904-beep.github.io/";
+        }
+    </script>
+
 </body>
-</html>
-￼Enter
+    </html>
