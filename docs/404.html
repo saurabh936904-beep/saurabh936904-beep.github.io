@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note Save With Email</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f6f7fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.c {
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 4px 24px #0002;
+}
+
+.k {
+  background: #eeebff;
+  color: #6c5ce7;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: monospace;
+  word-break: break-all;
+  margin-top: 12px;
+}
+
+a.b {
+  display: block;
+  background: linear-gradient(135deg,#6c5ce7,#8e6cf6);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.download {
+  background: linear-gradient(135deg,#16a085,#27ae60) !important;
+}
+
+small {
+  color: #6b7090;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 22px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="c">
+
+  <h2>📝 Note Save</h2>
+
+  <p id="t">Opening the app...</p>
+
+  <div class="k" id="k" style="display:none"></div>
+
+  <a class="b" id="open" href="#" style="display:none">
+    📱 Open in App
+  </a>
+
+  <p><small id="s"></small></p>
+
+  <hr>
+
+  <h3>Note Save With Email</h3>
+
+  <p>Get the Android app to open and save your notes.</p>
+
+  <a
+    class="b download"
+    href="https://www.mediafire.com/file/pu6px19kutexg2h/Note+Save+With+Email_1.0.apk/file"
+    target="_blank"
+    rel="noopener">
+    ⬇ Download App APK
+  </a>
+
+  <p>
+    <small>Download and install Note Save on your Android phone.</small>
+  </p>
+
+</div>
+
+<script>
+
+// App package name
+var PKG = "Note.Save.With.Email";
+
+// Current URL
+var path = location.pathname + location.search;
+
+var seg = location.pathname.replace(/^\/+|\/+$/g, "");
+
+var open = document.getElementById("open");
+var title = document.getElementById("t");
+var key = document.getElementById("k");
+var status = document.getElementById("s");
+
+var android = /Android/i.test(navigator.userAgent);
+
+// Handle app links
+if (!seg) {
+
+  title.textContent = "Welcome to Note Save";
+
+} else {
+
+  var id = decodeURIComponent(
+    seg.split("/").slice(-1)[0]
+  );
+
+  key.textContent = id;
+  key.style.display = "block";
+
+  var intent =
+    "intent://" +
+    location.host +
+    path +
+    "#Intent;scheme=https;package=" +
+    PKG +
+    ";end";
+
+  if (android) {
+
+    title.textContent = "Opening Note Save App...";
+
+    open.href = intent;
+    open.style.display = "block";
+
+    status.textContent =
+      "If nothing happens, make sure Note Save is installed.";
+
+    setTimeout(function() {
+      location.href = intent;
+    }, 300);
+
+  } else {
+
+    title.textContent =
+      "Open this link on your Android phone with Note Save installed.";
+
+  }
+}
+
+</script>
+
+</body>
+</html>
