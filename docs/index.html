@@ -1,128 +1,261 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note Save With Email</title>
 
-    <title>Open My App1</title>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    <meta name="theme-color" content="#0d1117">
+body {
+  font-family: system-ui, sans-serif;
+  background: #f6f7fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.c {
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 4px 24px #0002;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0d1117, #172554);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+h2 {
+  color: #29254a;
+}
 
-        .container {
-            width: 90%;
-            max-width: 400px;
-            padding: 35px 25px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 22px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
+p {
+  color: #555;
+}
 
-        .logo {
-            font-size: 65px;
-            margin-bottom: 15px;
-        }
+.k {
+  background: #eeebff;
+  color: #6c5ce7;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: monospace;
+  word-break: break-all;
+  margin-top: 12px;
+}
 
-        h1 {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
+.b {
+  display: block;
+  background: linear-gradient(135deg,#6c5ce7,#8e6cf6);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: bold;
+  margin-top: 16px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px;
+}
 
-        p {
-            color: #cbd5e1;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
+.download {
+  background: linear-gradient(135deg,#16a085,#27ae60);
+}
 
-        .app-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 16px;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-        }
+small {
+  color: #6b7090;
+  display: block;
+  margin-top: 16px;
+}
 
-        .app-btn:active {
-            transform: scale(0.97);
-        }
-
-        .website-btn {
-            display: inline-block;
-            margin-top: 18px;
-            color: #93c5fd;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        #status {
-            margin-top: 18px;
-            font-size: 13px;
-            color: #fbbf24;
-        }
-    </style>
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 22px 0;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="c">
 
-        <div class="logo">📱</div>
+  <h2>📝 Note Save</h2>
 
-        <h1>Welcome to My Appk</h1>
+  <p id="t">
+    Get the Android app to open and save your notes.
+  </p>
 
-        <p>
-            Open our Android application
-            by clicking the button below.
-        </p>
+  <div class="k" id="k" style="display:none"></div>
 
-        <button class="app-btn" onclick="openMyApp()">
-            🚀 Open My App
-        </button>
+  <a class="b" id="open" href="#" style="display:none">
+    Open in App
+  </a>
 
-        <div id="status"></div>
+  <hr>
 
-        <a class="website-btn"
-           href="https://saurabh936904-beep.github.io/">
-            Continue to Website
-        </a>
+  <h3>📲 Note Save With Email</h3>
 
-    </div>
+  <p>Download the Android app and save your notes easily.</p>
 
-    <script>
-        function openMyApp() {
-            document.getElementById("status").innerText =
-                "Opening app...";
+  <a
+    class="b download"
+    id="download"
+    href="https://www.mediafire.com/file/pu6px19kutexg2h/Note+Save+With+Email_1.0.apk/file"
+    download>
+    ⬇ Download App APK
+  </a>
 
-            // Verified Android App Link
-            window.location.href =
-                "https://saurabh936904-beep.github.io/";
-        }
-    </script>
+  <small id="s">
+    Install Note Save to access your saved notes.
+  </small>
+
+</div>
+
+<script>
+var PKG = "Note.Save.With.Email";
+
+var path = location.pathname + location.search;
+
+var seg = location.pathname.replace(/^\/+|\/+$/g, "");
+
+var open = document.getElementById("open");
+var title = document.getElementById("t");
+var key = document.getElementById("k");
+var status = document.getElementById("s");
+
+var android = /Android/i.test(navigator.userAgent);
+
+if (seg) {
+
+  var id = decodeURIComponent(
+    seg.split("/").slice(-1)[0]
+  );
+
+  key.textContent = id;
+  key.style.display = "block";
+
+  var intent =
+    "intent://" +
+    location.host +
+    path +
+    "#Intent;scheme=https;package=" +
+    PKG +
+    ";end";
+
+  if (android) {
+
+    title.textContent = "Opening Note Save App...";
+
+    open.href = intent;
+    open.style.display = "block";
+
+    status.textContent =
+      "If nothing happens, make sure Note Save is installed.";
+
+    setTimeout(function() {
+      location.href = intent;
+    }, 300);
+
+  } else {
+
+    title.textContent =
+      "Open this link on your Android phone with Note Save installed.";
+
+  }
+
+} else {
+
+  title.textContent =
+    "Welcome to Note Save With Email!";
+
+}
+</script>
 
 </body>
-    </html>
+</html>
+￼EnterTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note Save With Email</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f6f7fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.c {
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 4px 24px #0002;
+}
+
+h2 {
+  color: #29254a;
+}
+
+p {
+  color: #555;
+}
+
+.k {
+  background: #eeebff;
+  color: #6c5ce7;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: monospace;
+  word-break: break-all;
+  margin-top: 12px;
+}
+
+.b {
+  display: block;
+  background: linear-gradient(135deg,#6c5ce7,#8e6cf6);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: bold;
+  margin-top: 16px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.download {
+  background: linear-gradient(135deg,#16a085,#27ae60);
+}
+
+small {
+  color: #6b7090;
+  display: block;
+  margin-top: 16px;
+}
+
+hr {
+  border: 0;
